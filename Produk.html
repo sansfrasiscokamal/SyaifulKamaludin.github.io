@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Produk</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .slider-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slides">
+            <img src="img/img1.jpg" alt="Produk 1">
+            <img src="img/img2.jpg" alt="Produk 2">
+            <img src="img/img3.jpg" alt="Produk 3">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">❮</button>
+        <button class="next" onclick="moveSlide(1)">❯</button>
+    </div>
+
+    <script>
+        let index = 0;
+
+        function moveSlide(step) {
+            let slides = document.querySelector(".slides");
+            let images = document.querySelectorAll(".slides img");
+            index += step;
+
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+
+            slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        setInterval(() => moveSlide(1), 3000); // Auto-slide setiap 3 detik
+    </script>
+
+</body>
+</html>
